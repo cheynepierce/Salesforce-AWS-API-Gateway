@@ -10,11 +10,11 @@ This is a simple Apex class that sends a request to an AWS API Gateway endpoint.
 </a>
 
 ### Usage
-Create a new organizational level AWS Configuration custom setting, and set your AWS access key and secret key.
+1. Create a new organizational level AWS Configuration custom setting, and set your AWS access key and secret key.
 
-Send a request to your API Gateway endpoint, by doing the following:
+2. Send a request to your API Gateway endpoint, by doing the following:
 
 ```
 APIGateway gateway = new APIGateway('base url', 'region');
-HttpResponse resp = gateway.sendRequest('function name', 'method', 'request content', 'function stage');
+HttpResponse resp = gateway.sendRequest('function name', 'method (i.e. POST, GET, etc)', 'request content', 'function stage (i.e. "prod")');
 ```
