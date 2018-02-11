@@ -16,5 +16,10 @@ This is a simple Apex class that sends a request to an AWS API Gateway endpoint.
 
 ```
 APIGateway gateway = new APIGateway('base url', 'region');
-HttpResponse resp = gateway.sendRequest('function name', 'method (i.e. POST, GET, etc)', 'request content', 'function stage (i.e. "prod")');
+HttpResponse resp = gateway.sendRequest(
+  'function name',
+  'method (i.e. POST, GET, etc)',
+  'request content',
+  'function stage (i.e. "prod")'
+);
 ```
