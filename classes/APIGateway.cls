@@ -21,6 +21,12 @@ public with sharing class APIGateway {
 	private String content;
 	private String body;
 
+	/**
+	* Constructor
+	* Parameters: 
+	*   baseUrl => The base URL for your API
+	*   region => The AWS region for your API
+	*/
 	public APIGateway(String baseUrl, String region) {
 		this.baseUrl = baseUrl;
 		this.region = region;
@@ -31,18 +37,22 @@ public with sharing class APIGateway {
 		this.SECRET_KEY = awsConfig.Secret_Key__c;
 	}
 
-	public String sendRequest(String functionName, String method, String content, String stage) {
+	/**
+	* Send a request to the API. Returns an HttpResponse object.
+	* Parameters: 
+	*   functionName => The name of your function
+	*   method => The HTTP method (GET, POST, PATCH, etc.)
+	*   content => The request content
+	*   stage => The stage of your API, as defined in your API Gateway settings (prod, beta, etc.)
+	*/
+	public HttpResponse sendRequest(String functionName, String method, String content, String stage) {
 		this.requestPath = '/' + stage + '/' + functionName;
 		this.method = method;
 		this.content = content;
 		
-		Http http = new Http();
 		HttpRequest req = this.getRequest();
-		HttpResponse resp = http.send(req);
-		String respBody = resp.getBody();
-		system.debug(respBody);
-
-		return respBody;
+		Http http = new Http();
+		return http.send(req);
 	}
 
 	/**
